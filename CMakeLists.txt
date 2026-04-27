@@ -73,8 +73,15 @@ endif()
 
 # Install rules — what `cmake --install build --prefix=<x>` (and Homebrew) ships.
 install(TARGETS mta RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
-install(FILES
-        info/stops.txt
-        info/transfers.txt
-        info/MTA_facts.txt
-    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/mta-timetable)
+
+# Install the static data files to the same dir the binary was compiled to
+# look in (MTA_DATADIR). Skipped when MTA_DATADIR is still the in-tree default,
+# since installing into the source tree is a no-op for local devs running
+# ./build/mta directly. Packagers always pass an explicit MTA_DATADIR.
+if (NOT MTA_DATADIR STREQUAL "${CMAKE_SOURCE_DIR}/info")
+    install(FILES
+            info/stops.txt
+            info/transfers.txt
+            info/MTA_facts.txt
+        DESTINATION ${MTA_DATADIR})
+endif()
