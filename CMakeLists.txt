@@ -39,14 +39,21 @@ target_link_libraries(mta
         absl::base
 )
 
-# Define path to stops file as a compile-time macro
+# Bake static-data paths in as compile-time macros so the binary
+# resolves them without any runtime path-discovery logic.
 target_compile_definitions(mta
     PRIVATE
-        DEBUG #TODO: Comment out
         MTA_STOP_DETAILS="${CMAKE_SOURCE_DIR}/info/stops.txt"
         MTA_TRANSFERS="${CMAKE_SOURCE_DIR}/info/transfers.txt"
         MTA_FACTS="${CMAKE_SOURCE_DIR}/info/MTA_facts.txt"
 )
+
+# Verbose feed-trace output (writes ./output.txt and prints a server-ping
+# line). Off in release builds; turn on with `cmake -DMTA_DEBUG=ON ..`.
+option(MTA_DEBUG "Enable verbose feed-trace and server-ping output" OFF)
+if (MTA_DEBUG)
+    target_compile_definitions(mta PRIVATE DEBUG)
+endif()
 
 if (MSVC)
     target_compile_options(mta PRIVATE /W4 /permissive-)
