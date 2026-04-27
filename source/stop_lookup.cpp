@@ -1,4 +1,5 @@
 #include "stop_lookup.h"
+#include "data_paths.h"
 
 #include <fstream>
 #include <sstream>
@@ -35,9 +36,15 @@ static std::vector<std::string> splitLine(const std::string& line) {
 }
 
 StopLookup::StopLookup(const std::string& path) {
-    loaded_ = loadFile(path);
+    // The default path is the compile-time MTA_STOP_DETAILS; an MTA_DATADIR
+    // env var (set by the user, or by Homebrew's post-install relocation)
+    // overrides it. Callers who pass an explicit path bypass the env check.
+    std::string resolved = (path == std::string(MTA_STOP_DETAILS))
+        ? mtaDataPath("stops.txt", MTA_STOP_DETAILS)
+        : path;
+    loaded_ = loadFile(resolved);
 #ifdef MTA_TRANSFERS
-    if (loaded_) loadTransfers(MTA_TRANSFERS);
+    if (loaded_) loadTransfers(mtaDataPath("transfers.txt", MTA_TRANSFERS));
 #endif
 }
 

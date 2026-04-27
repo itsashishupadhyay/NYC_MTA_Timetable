@@ -10,6 +10,7 @@ struct CliOptions {
     int  min_lead_minutes = 0;                // hide trains/options leaving in < N min
     bool verbose = false;
     bool help = false;
+    bool version = false;                     // print version string and exit
 };
 
 CliOptions parseArgs(int argc, char* argv[]);

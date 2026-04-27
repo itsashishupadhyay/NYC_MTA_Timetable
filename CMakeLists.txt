@@ -1,13 +1,24 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(MTA_TimeTable CXX)
+project(MTA_TimeTable VERSION 0.1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+include(GNUInstallDirs)
+
 find_package(CURL REQUIRED)
 find_package(Protobuf REQUIRED)
 find_package(absl CONFIG REQUIRED)
+
+# Where stops.txt / transfers.txt / MTA_facts.txt live at runtime.
+# - Local builds default to the in-tree info/ dir so `./build/mta` just works.
+# - Packagers (Homebrew, distro packages) override this at configure time:
+#       cmake -DMTA_DATADIR=${CMAKE_INSTALL_FULL_DATAROOTDIR}/mta-timetable ...
+#   The compile-time path is the fallback; the runtime env var MTA_DATADIR
+#   takes precedence so the binary stays relocatable post-install.
+set(MTA_DATADIR "${CMAKE_SOURCE_DIR}/info" CACHE PATH
+    "Directory containing stops.txt, transfers.txt, MTA_facts.txt at runtime")
 
 add_executable(mta
     main.cpp
@@ -39,13 +50,12 @@ target_link_libraries(mta
         absl::base
 )
 
-# Bake static-data paths in as compile-time macros so the binary
-# resolves them without any runtime path-discovery logic.
 target_compile_definitions(mta
     PRIVATE
-        MTA_STOP_DETAILS="${CMAKE_SOURCE_DIR}/info/stops.txt"
-        MTA_TRANSFERS="${CMAKE_SOURCE_DIR}/info/transfers.txt"
-        MTA_FACTS="${CMAKE_SOURCE_DIR}/info/MTA_facts.txt"
+        MTA_STOP_DETAILS="${MTA_DATADIR}/stops.txt"
+        MTA_TRANSFERS="${MTA_DATADIR}/transfers.txt"
+        MTA_FACTS="${MTA_DATADIR}/MTA_facts.txt"
+        MTA_VERSION="${PROJECT_VERSION}"
 )
 
 # Verbose feed-trace output (writes ./output.txt and prints a server-ping
@@ -60,3 +70,11 @@ if (MSVC)
 else()
     target_compile_options(mta PRIVATE -Wall -Wextra -Wpedantic)
 endif()
+
+# Install rules — what `cmake --install build --prefix=<x>` (and Homebrew) ships.
+install(TARGETS mta RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(FILES
+        info/stops.txt
+        info/transfers.txt
+        info/MTA_facts.txt
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/mta-timetable)

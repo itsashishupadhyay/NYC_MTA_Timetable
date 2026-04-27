@@ -36,6 +36,11 @@ CliOptions parseArgs(int argc, char* argv[]) {
             return opts;
         }
 
+        if (arg == "--version" || arg == "-V") {
+            opts.version = true;
+            return opts;
+        }
+
         if (arg == "--verbose" || arg == "-v") {
             opts.verbose = true;
             continue;
@@ -106,6 +111,7 @@ void printUsage(const char* progName) {
               << "  -l, --line <group>    Filter by line group (default: all)\n"
               << "  -t, --time <min>      Only show trains leaving in N+ min from now (default: 0)\n"
               << "  -v, --verbose         Detailed view (per-stop diagram for routing)\n"
+              << "  -V, --version         Print version and exit\n"
               << "  -h, --help            Show this help\n\n"
               << "When run with no arguments, " << ansi::BOLD << "mta" << ansi::RESET
               << " predicts your route based on travel\n"

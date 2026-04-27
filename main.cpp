@@ -19,6 +19,7 @@
 #include "route_planner.h"
 #include "ansi_colors.h"
 #include "mta_cache.h"
+#include "data_paths.h"
 
 
 // Interactive station picker — shows options and lets user choose
@@ -185,7 +186,7 @@ static Prediction pickPrediction(const MtaCache& cache) {
 // Load facts from file and print a random one
 static void printRandomFact() {
 #ifdef MTA_FACTS
-    std::ifstream f(MTA_FACTS);
+    std::ifstream f(mtaDataPath("MTA_facts.txt", MTA_FACTS));
     if (!f.is_open()) return;
 
     std::vector<std::string> facts;
@@ -237,6 +238,14 @@ int main(int argc, char* argv[]) {
     CliOptions opts = parseArgs(argc, argv);
     if (opts.help) {
         printUsage(argv[0]);
+        return 0;
+    }
+    if (opts.version) {
+#ifdef MTA_VERSION
+        std::cout << "mta " << MTA_VERSION << "\n";
+#else
+        std::cout << "mta (unknown version)\n";
+#endif
         return 0;
     }
 

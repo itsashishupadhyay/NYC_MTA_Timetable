@@ -6,6 +6,8 @@
 #include <cmath>
 #include <ctime>
 #include <cstdlib>
+#include <filesystem>
+#include <system_error>
 #include <unordered_map>
 #include <map>
 
@@ -32,8 +34,54 @@ static std::tm toEastern(std::time_t t) {
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
+// Resolve the per-user cache directory.
+//
+// Order:
+//   1. $MTA_CACHE_DIR        — explicit override (tests, packagers)
+//   2. macOS:  $HOME/Library/Caches/mta-timetable
+//      Linux:  $XDG_CACHE_HOME/mta-timetable, else $HOME/.cache/mta-timetable
+//   3. cwd fallback (returns empty → caller uses ".mta_cache")
+//
+// Returns the directory; the cache file lives at <dir>/cache.
+static std::string defaultCacheDir() {
+    if (const char* override_dir = std::getenv("MTA_CACHE_DIR")) {
+        if (*override_dir) return override_dir;
+    }
+    const char* home = std::getenv("HOME");
+    if (!home || !*home) return std::string();
+#ifdef __APPLE__
+    return std::string(home) + "/Library/Caches/mta-timetable";
+#else
+    if (const char* xdg = std::getenv("XDG_CACHE_HOME")) {
+        if (*xdg) return std::string(xdg) + "/mta-timetable";
+    }
+    return std::string(home) + "/.cache/mta-timetable";
+#endif
+}
+
 static std::string defaultCachePath() {
-    return ".mta_cache";
+    std::string dir = defaultCacheDir();
+    if (dir.empty()) {
+        // No HOME — fall back to cwd. Rare (CI without env), but graceful.
+        return ".mta_cache";
+    }
+    std::error_code ec;
+    std::filesystem::create_directories(dir, ec);  // ignore failure; open() will report
+
+    std::string path = dir + "/cache";
+
+    // One-time migration: if a legacy ./.mta_cache exists in the cwd at first
+    // run and we don't yet have a user-cache file, seed the new path with it.
+    // Don't delete the legacy file — the user may still be running an older
+    // build, and we don't want to surprise-destroy their history.
+    if (!std::filesystem::exists(path, ec)) {
+        std::filesystem::path legacy = ".mta_cache";
+        if (std::filesystem::exists(legacy, ec)) {
+            std::filesystem::copy_file(legacy, path,
+                std::filesystem::copy_options::skip_existing, ec);
+        }
+    }
+    return path;
 }
 
 static std::vector<std::string> splitTabs(const std::string& line) {
