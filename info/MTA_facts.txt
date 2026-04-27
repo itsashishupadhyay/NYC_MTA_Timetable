@@ -1,0 +1,102 @@
+# MTA Fun Facts — one fact per line, # lines are comments
+# Used by the app to show a random fact while fetching data.
+The New York City subway opened on October 27, 1904, with the IRT running from City Hall to 145th Street in Harlem.
+The first subway ride carried over 100,000 passengers, with New Yorkers lining up for hours to experience underground rail travel.
+Before the subway, New York relied on elevated railways ("els"), horse-drawn streetcars, and ferries to move its growing population.
+In 1870, Alfred Ely Beach secretly built a pneumatic subway prototype under Broadway -- a 312-foot tube that pushed a railcar with compressed air.
+The original IRT subway was built in just four years, an extraordinary feat of engineering through solid Manhattan bedrock.
+Three rival companies originally built the system: the IRT, the BMT, and the city-built IND.
+In 1940, New York City unified all three subway systems under public control, creating the integrated network that exists today.
+The MTA was established in 1968 to oversee the subway, buses, commuter railroads, bridges, and tunnels.
+The original subway fare in 1904 was five cents -- and it stayed that way for 44 years until 1948.
+The 42nd Street Shuttle (S train) was once part of the original IRT main line before the system was reconfigured.
+The NYC subway has 472 stations -- more than any other single metro system on Earth.
+The system spans 248 miles of revenue routes across Manhattan, Brooklyn, Queens, and the Bronx.
+Including yards, sidings, and non-revenue track, the system totals over 665 miles of mainline track.
+The MTA operates the largest public transportation network in North America, serving a region of 15.3 million people.
+On a typical pre-pandemic weekday, the subway carried approximately 5.5 million riders -- more than many US states' entire populations.
+Annual subway ridership before 2020 regularly exceeded 1.7 billion trips per year.
+The subway fleet consists of more than 6,400 individual railcars, one of the largest fleets of any transit system in the world.
+There are 28 numbered and lettered subway services running across 36 physical rail lines.
+The NYC subway is the largest rapid transit system in the Western Hemisphere by number of stations.
+The MTA also operates the Long Island Rail Road, Metro-North Railroad, MTA Bus, and the Staten Island Railway.
+The subway runs on a third-rail system delivering 625 volts of direct current, powering trains to speeds of up to 55 mph.
+The system uses standard gauge track (4 feet, 8.5 inches between rails), the same gauge used by most railroads worldwide.
+The A Division (numbered lines 1-7) uses narrower trains for the IRT's tighter tunnels; the B Division (lettered lines) uses wider cars.
+Many trunk lines have four tracks -- two local, two express -- allowing faster trains to bypass local stops.
+The MTA pumps roughly 13 million gallons of water out of the subway system every single day to keep tunnels from flooding.
+The Steinway Tunnel, now carrying the 7 train under the East River, was originally built in 1907 for streetcars.
+The Atlantic Avenue Tunnel in Brooklyn (1844) is believed to be the oldest subway tunnel in the world. It was sealed in 1861 and rediscovered over a century later.
+Fourteen tunnels carry subway trains under the East River and Harlem River, connecting Manhattan to the outer boroughs.
+The Joralemon Street Tunnel (4/5 trains) was the first underwater subway tunnel between Manhattan and Brooklyn, opening in 1908.
+Some subway lines still use relay-based signal technology dating back to the 1930s. Upgrading these is one of the MTA's biggest challenges.
+The deepest station is 191st Street on the 1 line -- approximately 173 feet below street level. Passengers ride elevators to reach it.
+The highest above-ground station is Smith-9th Streets (F/G) in Brooklyn, perched about 88 feet above the Gowanus Canal.
+The A train's run from Inwood-207th St to Far Rockaway covers over 32 miles -- the longest single route in the system.
+The shortest route is the 42nd Street Shuttle (S train), traveling just 0.5 miles between Times Square and Grand Central.
+Times Square-42nd Street is the busiest station complex, serving over a dozen lines and hundreds of thousands of riders daily.
+The Lexington Avenue line (4/5/6) carries more passengers than many entire subway systems in other cities.
+Grand Central Terminal has 44 platforms serving 67 tracks on two levels -- the most of any train station in the world.
+The NYC subway is one of the few transit systems in the world that operates 24 hours a day, 7 days a week, 365 days a year.
+The subway didn't fully shut down for weather until Hurricane Sandy in 2012, when it was preemptively closed for the first time in over a century.
+After Hurricane Sandy, saltwater flooded multiple tunnels and stations, causing billions of dollars in damage still being repaired today.
+The MTA's Arts & Design program has installed over 400 permanent artworks in stations -- one of the world's largest public art collections.
+The abandoned City Hall station (1904) features stunning Guastavino tile arches, skylights, and brass chandeliers. Closed since 1945, it remains intact.
+Passengers on the downtown 6 train can glimpse the old City Hall station's arched ceilings as the train loops around the turnaround track.
+Original subway stations had unique mosaic patterns and tile colors so riders -- including those who couldn't read -- could recognize their stop.
+The 81st Street-Museum of Natural History station (B/C) features mosaic murals of marine life and animals celebrating the museum above.
+Tom Otterness's "Life Underground" at 14th St/8th Ave features over 100 whimsical bronze sculptures of tiny figures throughout the station.
+Columbus Circle station features Sol LeWitt's "Whirls and Twirls" -- 250 hand-cut porcelain tiles in six vibrant colors.
+The 2nd Avenue Subway stations (opened 2017) feature some of the most ambitious art ever commissioned, including Chuck Close's mosaic portraits.
+Billy Strayhorn composed "Take the 'A' Train" in 1939 after being told to take the A express to Harlem. It became a legendary jazz standard.
+MUNY (Music Under New York), launched in 1985, is the MTA's official program for subway performers who audition for permits to play.
+Massimo Vignelli created a famous diagrammatic subway map in 1972 -- beautiful but controversial because riders couldn't find where they actually were.
+The current geographically-based subway map, designed by Michael Hertz Associates, replaced Vignelli's version in 1979.
+The iconic subway signage uses Helvetica, chosen for maximum legibility in fast-moving, high-traffic environments.
+Each subway line's color represents its trunk route in Manhattan: blue for 8th Ave, orange for 6th Ave, red for Broadway-7th Ave, green for Lex.
+The colored globe lights outside stations signal entrance status: green = full-time entry, red = limited hours or exit only.
+"Stand clear of the closing doors, please" has been a fixture of the subway experience for decades, recognized worldwide.
+The subway runs approximately 8,000 scheduled train trips on a typical weekday.
+During rush hour on the busiest lines, trains run as frequently as every two minutes.
+The subway employs thousands of operators, conductors, station agents, and technicians to keep trains running around the clock.
+Overnight service runs on reduced frequency, but trains still operate on every line -- a rarity among world transit systems.
+Weekend service changes for maintenance are a well-known part of NYC life. Most major track work happens on nights and weekends.
+The Coney Island Yard in Brooklyn and the Corona Yard in Queens are among the largest rail maintenance yards in the system.
+Each subway car gets a visual check every 24 hours, thorough inspections every 6,000 miles, and full overhauls on longer schedules.
+The MTA's Rail Control Center in Lower Manhattan monitors and coordinates all train movements across the network in real time.
+The system's GTFS-Realtime data feeds provide live train positions and arrival predictions, powering countdown clocks and apps used by millions.
+The L line was the first to receive CBTC (Communications-Based Train Control), allowing trains to run closer together and more reliably.
+CBTC is being rolled out to additional lines, including the 7, to increase capacity without building new tracks.
+OMNY, the MTA's contactless fare payment system, launched in 2019 -- tap a credit card, phone, or smartwatch to ride.
+OMNY replaced the MetroCard, introduced in 1993, which served as the primary fare medium for three decades.
+New R211 subway cars feature wider doors, digital displays, open gangways between cars, and improved accessibility.
+Open gangway trains -- where cars connect without doors between them -- improve passenger flow and increase effective capacity.
+The MTA has been installing platform edge screens and improved lighting in select stations as part of modernization programs.
+Countdown clocks showing real-time arrivals were first deployed on the L line and numbered lines, then expanded to lettered lines.
+The subway's power comes from a dedicated distribution network using third rail rather than overhead wires, keeping platforms clear.
+Fulton Center (2014) in Lower Manhattan features a soaring oculus skylight and connects multiple subway lines in a modern transit hub.
+The Oculus at the World Trade Center, designed by Santiago Calatrava, is both an architectural icon and a PATH/subway transit hub.
+Grand Central's ceiling features zodiac constellations painted in reverse. One theory: it represents God's view looking down.
+Grand Central has a "secret platform" (Track 61) reportedly used by FDR to travel privately, avoiding public exposure of his wheelchair.
+The 7 train extension to Hudson Yards (2015) was the first major subway expansion in over 25 years.
+Phase 1 of the Second Avenue Subway opened on January 1, 2017, adding three new stations on the Upper East Side after decades of planning.
+The Williamsburg Bridge (1908) was the first bridge to carry rapid transit trains in New York City.
+The Manhattan Bridge carries four subway tracks -- more than any other East River bridge -- serving the B, D, N, and Q lines.
+Subway trains cross the East River both over bridges and through underwater tunnels, giving riders dramatically different experiences.
+The Rutgers Street Tunnel (F line) carries trains deep under the East River between East Broadway and York Street in Brooklyn.
+The Hugh L. Carey Tunnel and the Queens-Midtown Tunnel carry cars, not subway trains -- a common point of confusion for visitors.
+A "Money Train" once collected fare revenue from token booths. The practice ended when MetroCards made cash collection obsolete.
+In 2015, a video of a rat dragging a pizza slice down subway steps went viral. "Pizza Rat" became a cultural icon of New York.
+The subway runs through parts of New York that are below sea level, requiring constant pumping to stay dry.
+There are dozens of abandoned stations throughout the system -- some sealed off, others visible as ghost platforms from passing trains.
+The subway's air is warmer than outside in winter and can be significantly hotter than street level in summer.
+Peregrine falcons -- the world's fastest birds -- nest on several MTA bridges. The MTA has supported falcon nesting programs since 1983.
+Central Park has no subway stations within it, despite being surrounded by some of the busiest stations in the system.
+The Staten Island Railway is geographically isolated from the rest of the subway. A free transfer to the Staten Island Ferry connects it to Manhattan.
+Platform gap fillers at curved stations bridge the gap between train and platform for safer boarding.
+Some stations have mezzanine levels with sealed-off spaces that once served as retail arcades, waiting rooms, or extra entrances.
+The subway enables millions of daily commutes and contributes hundreds of billions of dollars in economic activity annually.
+Property values near subway stations are 10-25% higher than comparable properties farther from transit.
+The subway connects some of the wealthiest neighborhoods in the world with some of the most underserved, serving as a great equalizer.
+The Long Island Rail Road is the busiest commuter railroad in North America, carrying over 300,000 riders daily.
+East Side Access (opened January 2023) brought LIRR service into Grand Central for the first time -- at $11.1 billion, one of the most expensive infrastructure projects in US history.

@@ -1,0 +1,82 @@
+# ── Build artifacts ──────────────────────────────────────────────────────────
+# CMake out-of-source build directory (the canonical place for everything).
+build/
+build-*/
+cmake-build-*/
+
+# In case someone runs `cmake .` from the project root, ignore the in-tree
+# CMake outputs that would otherwise pollute the working tree.
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+CTestTestfile.cmake
+Testing/
+Makefile
+install_manifest.txt
+compile_commands.json
+
+# The compiled binary, if built at the project root by accident.
+/mta
+/mta_timetable
+
+# Object files, libraries, and other compiled outputs.
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.app
+
+# macOS debug symbol bundles.
+*.dSYM/
+
+# Coverage / profiling.
+*.gcda
+*.gcno
+*.gcov
+*.profraw
+*.profdata
+coverage/
+
+# ── Runtime artifacts ────────────────────────────────────────────────────────
+# Local trip-history cache the binary writes alongside itself.
+.mta_cache
+.mta_timetable_cache
+
+# Stray output dumps from earlier debug runs.
+output.txt
+out.txt
+
+# ── OS metadata ──────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ── Editor / IDE state ───────────────────────────────────────────────────────
+.vscode/
+.idea/
+.vs/
+*.swp
+*.swo
+*.swn
+*~
+.cache/
+.ccls-cache/
+.clangd/
+
+# ── Tooling state ────────────────────────────────────────────────────────────
+# Per-project AI-assistant settings — keep local
+.claude/
+
+# ── Temp / logs ──────────────────────────────────────────────────────────────
+*.log
+*.tmp
+*.bak
