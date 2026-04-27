@@ -15,8 +15,8 @@
 - [How it works (90-second tour)](#how-it-works-90-second-tour)
 - [Screenshots](#screenshots)
 - [Install](#install)
-  - [From source (current)](#from-source-current)
-  - [Homebrew (planned)](#homebrew-planned)
+  - [Homebrew (macOS / Linux)](#homebrew-macos--linux)
+  - [From source](#from-source)
 - [Usage](#usage)
 - [Reading the display](#reading-the-display)
 - [Architecture](#architecture)
@@ -101,7 +101,18 @@ Reading top-to-bottom gives you the full picture of the leg: which station to bo
 
 ## Install
 
-### From source (current)
+### Homebrew (macOS / Linux)
+
+```bash
+brew tap itsashishupadhyay/mta
+brew install mta
+```
+
+That's it — `mta --help` from anywhere on your `$PATH`. The formula regenerates the GTFS-realtime protobuf bindings against your installed `protobuf`, so the binary's ABI always matches the libprotobuf it links to.
+
+To upgrade later: `brew upgrade mta`. To remove: `brew uninstall mta && brew untap itsashishupadhyay/mta`.
+
+### From source
 
 `mta-timetable` builds and runs anywhere with a C++17 compiler. On a modern Mac the whole flow takes ~30 seconds.
 
@@ -149,10 +160,6 @@ cmake -B build -DMTA_DEBUG=ON
 cmake -B build -DCMAKE_BUILD_TYPE=Release
 cmake -B build -DCMAKE_BUILD_TYPE=Debug
 ```
-
-### Homebrew (planned)
-
-A Homebrew tap is on the roadmap — see [Roadmap](#roadmap). Until that ships, the source build above is the supported install path.
 
 ---
 
@@ -376,7 +383,7 @@ Please include:
 
 ## Roadmap
 
-- [ ] Homebrew tap (`brew install <tap>/mta-timetable`) for one-line install on macOS.
+- [x] Homebrew tap — `brew tap itsashishupadhyay/mta && brew install mta`.
 - [ ] `--watch` / `--tui` mode with auto-refresh and `j/k` navigation (lazygit-style).
 - [ ] Service-alert integration (planned diversions, suspensions).
 - [ ] First-run setup that saves a "home station" so bare `mta` is even more useful.
