@@ -4,6 +4,7 @@
 #include <vector>
 #include <unordered_map>
 #include <optional>
+#include <utility>
 
 // Information about a single stop or station from stops.txt
 struct StopInfo {
@@ -77,6 +78,13 @@ public:
     // Returns "Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island",
     // or "" when the stop is unknown.
     std::string boroughFor(const std::string& parentId) const;
+
+    // Names of the parent stations immediately before and after `parentId`
+    // along the same physical line — i.e. the same first character of stop_id
+    // and the next-lower / next-higher numeric portion that exists. Either may
+    // be empty (terminus, or unknown stop). Used by the disambiguation picker
+    // to render hints like "between Avenue I and Avenue N".
+    std::pair<std::string, std::string> neighborNamesFor(const std::string& parentId) const;
 
 private:
     bool loadFile(const std::string& path);

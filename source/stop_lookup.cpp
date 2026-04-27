@@ -114,6 +114,49 @@ std::string StopLookup::complexRootFor(const std::string& parentId) const {
     return ufFind(parentId);
 }
 
+std::pair<std::string, std::string>
+StopLookup::neighborNamesFor(const std::string& parentId) const {
+    if (parentId.empty()) return {"", ""};
+    char prefix = parentId[0];
+    bool prefix_is_digit = (prefix >= '0' && prefix <= '9');
+    auto numericOf = [&](const std::string& id) -> int {
+        size_t start = prefix_is_digit ? 0 : 1;
+        int num = 0;
+        bool any = false;
+        for (size_t i = start; i < id.size(); i++) {
+            if (id[i] < '0' || id[i] > '9') break;
+            num = num * 10 + (id[i] - '0');
+            any = true;
+        }
+        return any ? num : -1;
+    };
+
+    int target = numericOf(parentId);
+    if (target < 0) return {"", ""};
+
+    // Collect all parents sharing the same first character; sort by numeric
+    // portion. ~470 parents total — linear scan is fine and avoids caching.
+    std::vector<std::pair<int, std::string>> peers;
+    peers.reserve(80);
+    for (const auto& [id, info] : stops_) {
+        if (info.location_type != 1) continue;
+        if (id.empty() || id[0] != prefix) continue;
+        int n = numericOf(id);
+        if (n < 0) continue;
+        peers.emplace_back(n, id);
+    }
+    std::sort(peers.begin(), peers.end());
+
+    std::string prev, next;
+    for (size_t i = 0; i < peers.size(); i++) {
+        if (peers[i].first != target) continue;
+        if (i > 0) prev = getStopName(peers[i - 1].second);
+        if (i + 1 < peers.size()) next = getStopName(peers[i + 1].second);
+        break;
+    }
+    return {prev, next};
+}
+
 std::string StopLookup::boroughFor(const std::string& parentId) const {
     auto it = stops_.find(parentId);
     if (it == stops_.end()) return std::string();
@@ -125,6 +168,13 @@ std::string StopLookup::boroughFor(const std::string& parentId) const {
     // the borders, so the order of checks matters — most distinctive first.
     if (lat <  40.65 && lon < -74.03) return "Staten Island";
     if (lat >  40.795)                return "Bronx";
+    // Lower Manhattan claim — applied before the Brooklyn rectangle, which
+    // would otherwise swallow Canal/Fulton/WTC/South Ferry. The island is
+    // narrower south of ~40.715 (Canal St latitude), so the eastern bound
+    // tightens there to keep DUMBO (e.g. York St at 40.701, -73.987) on the
+    // Brooklyn side.
+    if (lat >= 40.715 && lat < 40.795 && lon >= -74.02 && lon <= -73.93) return "Manhattan";
+    if (lat >= 40.70  && lat < 40.715 && lon >= -74.02 && lon <= -73.99) return "Manhattan";
     if (lat <  40.74 && lon > -74.03) return "Brooklyn";
     if (lon > -73.93)                 return "Queens";
     return "Manhattan";

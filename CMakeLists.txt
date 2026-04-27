@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(MTA_TimeTable VERSION 0.1.0 LANGUAGES CXX)
+project(MTA_TimeTable VERSION 0.1.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -31,6 +31,7 @@ add_executable(mta
     source/output_formatter.cpp
     source/route_planner.cpp
     source/mta_cache.cpp
+    source/line_metadata.cpp
 )
 
 

@@ -20,6 +20,7 @@
 #include "ansi_colors.h"
 #include "mta_cache.h"
 #include "data_paths.h"
+#include "line_metadata.h"
 
 
 // Interactive station picker — shows options and lets user choose
@@ -56,33 +57,51 @@ static StationMatch pickStation(
         return matches[0];
     }
 
-    // When two or more matches have the same display name (e.g. "7 Av" can
-    // mean three physically-different stations), append a borough hint —
-    // and, if the borough alone doesn't disambiguate, the parent stop_id —
-    // so the user can actually tell them apart.
+    // When two or more matches share a display name (e.g. "Bay Pkwy" sits on
+    // three different physical lines, "7 Av" on two), build a hint that says
+    // which trains/line each one belongs to and what's adjacent — so the user
+    // can tell them apart without having to know GTFS stop_ids.
     std::vector<std::string> hints(matches.size());
     {
         std::unordered_map<std::string, int> nameCount;
         for (const auto& m : matches) nameCount[m.stop_name]++;
-        std::unordered_map<std::string, int> nameBoroughCount;
-        for (const auto& m : matches) {
-            std::string b = stops.boroughFor(m.base_stop_id);
-            nameBoroughCount[m.stop_name + "|" + b]++;
-        }
         for (size_t i = 0; i < matches.size(); i++) {
             const auto& m = matches[i];
             if (nameCount[m.stop_name] <= 1) continue;
-            std::string b = stops.boroughFor(m.base_stop_id);
+
+            LineInfo li = lineInfoFor(m.base_stop_id);
+            auto [prev, next] = stops.neighborNamesFor(m.base_stop_id);
+            std::string borough = stops.boroughFor(m.base_stop_id);
+
             std::ostringstream h;
-            h << "  " << ansi::DIM << "(";
-            if (!b.empty()) h << b;
-            else            h << "?";
-            // Same name AND same borough — surface the parent_stop_id so the
-            // two entries don't look identical in the picker.
-            if (nameBoroughCount[m.stop_name + "|" + b] > 1) {
-                h << " · " << m.base_stop_id;
+            h << "  " << ansi::DIM;
+            bool wrote_anything = false;
+            auto sep = [&]() {
+                if (wrote_anything) h << " · ";
+                wrote_anything = true;
+            };
+            if (li.trains[0])    { sep(); h << li.trains; }
+            if (li.line_name[0]) { sep(); h << li.line_name; }
+            if (!prev.empty() && !next.empty()) {
+                sep();
+                h << "between " << prev << " and " << next;
+            } else if (!prev.empty()) {
+                sep();
+                h << "near " << prev;
+            } else if (!next.empty()) {
+                sep();
+                h << "near " << next;
             }
-            h << ")" << ansi::RESET;
+            if (!borough.empty()) {
+                if (wrote_anything) h << " ";
+                h << "(" << borough << ")";
+                wrote_anything = true;
+            }
+            // Last-resort fallback for IDs we don't recognize at all.
+            if (!wrote_anything) {
+                h << "(" << m.base_stop_id << ")";
+            }
+            h << ansi::RESET;
             hints[i] = h.str();
         }
     }
