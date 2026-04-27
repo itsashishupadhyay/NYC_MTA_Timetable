@@ -9,8 +9,31 @@
 
 ---
 
+## Quick install (macOS / Linux via Homebrew)
+
+```bash
+brew tap itsashishupadhyay/mta
+brew install mta
+```
+
+Then run it:
+
+```bash
+mta --version              # mta 0.1.1
+mta -s "Times Sq"          # next trains at every line, both directions
+mta -s "Penn Station" -d "DeKalb Av"   # end-to-end route plan
+mta --help                 # every flag
+```
+
+First install builds from source (cmake + protobuf are pulled as deps), so give it ~2 minutes. To upgrade later: `brew upgrade mta`. To uninstall: `brew uninstall mta && brew untap itsashishupadhyay/mta`.
+
+For a from-source build without Homebrew, see [Install](#install) below.
+
+---
+
 ## Table of contents
 
+- [Quick install](#quick-install-macos--linux-via-homebrew)
 - [What it does](#what-it-does)
 - [How it works (90-second tour)](#how-it-works-90-second-tour)
 - [Screenshots](#screenshots)
