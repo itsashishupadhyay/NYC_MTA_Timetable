@@ -415,9 +415,3 @@ When refreshing the screenshots, run each command in a clean terminal at the spe
 | `Images/08-help.png` | 100 | `mta --help` | Full help screen, color-coded line groups visible. |
 | `Images/09-route-verbose-multi-1.png` | 130 | `mta -s "Bay Ridge-95" -d "Forest Hills" -t 10 -v` | Crop to **Option 1 only** — the starred recommendation, every leg with per-stop detail. |
 
-Tips for cleaner screenshots:
-- Use a consistent font (JetBrains Mono, Berkeley Mono, SF Mono, or Menlo at 13–14pt).
-- Set a neutral background (e.g., iTerm2's default Pro / "Solarized Dark" or a flat near-black).
-- Capture with `Cmd+Shift+4` on macOS, then crop to the relevant rows so each image has high signal-to-pixel ratio.
-- For the hero, pick a time when at least one train is `now` and several are in the green/yellow range — it makes the urgency coloring obvious.
-- Save as PNG (not JPG); the colored badges have hard edges that JPG mangles.
