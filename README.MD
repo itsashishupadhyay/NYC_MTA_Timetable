@@ -3,6 +3,8 @@
 > **A fast, color-coded NYC subway arrival board for your terminal — written in C++.**
 > Real-time arrivals, multi-route trip planning, transfer-complex resolution. One command, no app, no API key.
 
+![mta-timetable in action](Images/10-MTADemo.gif)
+
 `mta-timetable` is a macOS / Linux command-line tool that pulls live MTA GTFS-realtime feeds and prints either (a) the next subway trains at a station, or (b) the best route between two stations — using NYC-station-display conventions: official MTA line colors, urgency-coded ETAs, and side-by-side direction panels. It's built for people who already live in iTerm2 / Ghostty / Alacritty / kitty and don't want to fish out a phone every time they leave the office.
 
 ![Hero — Times Sq arrivals at a glance](Images/01-arrivals-hero.png)
